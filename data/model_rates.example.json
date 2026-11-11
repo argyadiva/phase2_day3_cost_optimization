@@ -1,0 +1,17 @@
+{
+  "currency": "USD",
+  "as_of": "YYYY-MM-DD",
+  "source_url": "https://replace-with-provider-pricing-source.example",
+  "models": {
+    "replace-fast-model-id": {
+      "input_per_1m": 0.0,
+      "cached_input_per_1m": 0.0,
+      "output_per_1m": 0.0
+    },
+    "replace-capable-model-id": {
+      "input_per_1m": 0.0,
+      "cached_input_per_1m": 0.0,
+      "output_per_1m": 0.0
+    }
+  }
+}

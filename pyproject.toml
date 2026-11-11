@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-ra -p no:cacheprovider --basetemp=.pytest-tmp -m 'not live and not lab_step'"
+markers = [
+  "live: requires a configured external model API",
+  "lab_step: opt-in checkpoint that passes only after a participant edit",
+]
+

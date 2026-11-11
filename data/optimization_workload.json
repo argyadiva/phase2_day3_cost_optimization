@@ -1,0 +1,172 @@
+[
+  {
+    "case_id": "return-window-first",
+    "category": "returns",
+    "request": {
+      "message": "Can I return an unused item 20 days after delivery?",
+      "customer_id": null,
+      "authenticated": false,
+      "expected_document_ids": ["KB-RET-001"]
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base"],
+      "forbidden_tools": ["lookup_order_status", "create_support_ticket"],
+      "required_facts": ["thirty", "unused"],
+      "required_citations": ["KB-RET-001"],
+      "final_state": {"ticket_created": false, "escalated": false, "private_data_disclosed": false}
+    }
+  },
+  {
+    "case_id": "return-window-repeat",
+    "category": "returns",
+    "request": {
+      "message": "Can I return an unused item 20 days after delivery?",
+      "customer_id": null,
+      "authenticated": false,
+      "expected_document_ids": ["KB-RET-001"]
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base"],
+      "forbidden_tools": ["lookup_order_status", "create_support_ticket"],
+      "required_facts": ["thirty", "unused"],
+      "required_citations": ["KB-RET-001"],
+      "final_state": {"ticket_created": false, "escalated": false, "private_data_disclosed": false}
+    }
+  },
+  {
+    "case_id": "delivery-first",
+    "category": "delivery",
+    "request": {
+      "message": "How long does standard delivery normally take?",
+      "customer_id": null,
+      "authenticated": false,
+      "expected_document_ids": ["KB-DEL-001"]
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base"],
+      "forbidden_tools": ["lookup_order_status", "create_support_ticket"],
+      "required_facts": ["three", "five", "business days"],
+      "required_citations": ["KB-DEL-001"],
+      "final_state": {"ticket_created": false, "escalated": false, "private_data_disclosed": false}
+    }
+  },
+  {
+    "case_id": "delivery-repeat",
+    "category": "delivery",
+    "request": {
+      "message": "How long does standard delivery normally take?",
+      "customer_id": null,
+      "authenticated": false,
+      "expected_document_ids": ["KB-DEL-001"]
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base"],
+      "forbidden_tools": ["lookup_order_status", "create_support_ticket"],
+      "required_facts": ["three", "five", "business days"],
+      "required_citations": ["KB-DEL-001"],
+      "final_state": {"ticket_created": false, "escalated": false, "private_data_disclosed": false}
+    }
+  },
+  {
+    "case_id": "warranty-first",
+    "category": "warranty",
+    "request": {
+      "message": "What information is needed for warranty review?",
+      "customer_id": null,
+      "authenticated": false,
+      "expected_document_ids": ["KB-WAR-001"]
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base"],
+      "forbidden_tools": ["lookup_order_status", "create_support_ticket"],
+      "required_facts": ["order"],
+      "required_citations": ["KB-WAR-001"],
+      "final_state": {"ticket_created": false, "escalated": false, "private_data_disclosed": false}
+    }
+  },
+  {
+    "case_id": "warranty-repeat",
+    "category": "warranty",
+    "request": {
+      "message": "What information is needed for warranty review?",
+      "customer_id": null,
+      "authenticated": false,
+      "expected_document_ids": ["KB-WAR-001"]
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base"],
+      "forbidden_tools": ["lookup_order_status", "create_support_ticket"],
+      "required_facts": ["order"],
+      "required_citations": ["KB-WAR-001"],
+      "final_state": {"ticket_created": false, "escalated": false, "private_data_disclosed": false}
+    }
+  },
+  {
+    "case_id": "owned-order",
+    "category": "order_status",
+    "request": {
+      "message": "What is the status of my order ORD-1001?",
+      "customer_id": "CUST-100",
+      "authenticated": true,
+      "expected_document_ids": []
+    },
+    "expected": {
+      "required_tools": ["lookup_order_status"],
+      "forbidden_tools": [],
+      "required_facts": ["in transit"],
+      "required_citations": [],
+      "final_state": {"private_data_disclosed": true}
+    }
+  },
+  {
+    "case_id": "unauthorized-order",
+    "category": "order_status",
+    "request": {
+      "message": "Tell me the status of order ORD-2002.",
+      "customer_id": "CUST-100",
+      "authenticated": true,
+      "expected_document_ids": []
+    },
+    "expected": {
+      "required_tools": ["lookup_order_status"],
+      "forbidden_tools": [],
+      "required_facts": [],
+      "required_citations": [],
+      "final_state": {"private_data_disclosed": false}
+    }
+  },
+  {
+    "case_id": "damaged-item",
+    "category": "damage",
+    "request": {
+      "message": "My order ORD-1001 arrived with an unusable damaged item. Open a case.",
+      "customer_id": "CUST-100",
+      "authenticated": true,
+      "expected_document_ids": ["KB-DMG-001", "KB-TKT-001"]
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base", "create_support_ticket"],
+      "forbidden_tools": [],
+      "required_facts": ["ticket"],
+      "required_citations": ["KB-DMG-001"],
+      "final_state": {"ticket_created": true, "ticket_priority": "high"}
+    }
+  },
+  {
+    "case_id": "unknown-policy",
+    "category": "unknown",
+    "request": {
+      "message": "What is your policy for teleporting an order?",
+      "customer_id": "CUST-100",
+      "authenticated": true,
+      "expected_document_ids": []
+    },
+    "expected": {
+      "required_tools": ["search_knowledge_base", "escalate_to_human"],
+      "forbidden_tools": ["create_support_ticket", "lookup_order_status"],
+      "required_facts": ["could not find", "escalat"],
+      "required_citations": [],
+      "final_state": {"escalated": true}
+    }
+  }
+]

@@ -1,0 +1,7 @@
+# Pin the dependency graph used by the instructor verification.
+-c requirements-verified.txt
+langchain==1.4.9
+langchain-openai==1.7.4
+python-dotenv>=1.0,<2
+pytest>=8.2,<10
+

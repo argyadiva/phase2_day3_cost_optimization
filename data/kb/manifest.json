@@ -1,0 +1,29 @@
+{
+  "corpus_name": "northstar-market-support",
+  "language": "en",
+  "synthetic": true,
+  "versions": {
+    "healthy": {
+      "effective_date": "2026-08-01",
+      "files": [
+        {"document_id": "KB-DEL-001", "category": "delivery", "path": "healthy/delivery-policy.md"},
+        {"document_id": "KB-DEL-002", "category": "delivery", "path": "healthy/delayed-delivery.md"},
+        {"document_id": "KB-RET-001", "category": "returns", "path": "healthy/return-policy.md"},
+        {"document_id": "KB-DMG-001", "category": "damage", "path": "healthy/damaged-items.md"},
+        {"document_id": "KB-MIS-001", "category": "delivery", "path": "healthy/missing-packages.md"},
+        {"document_id": "KB-WAR-001", "category": "warranty", "path": "healthy/warranty-policy.md"},
+        {"document_id": "KB-PRV-001", "category": "privacy", "path": "healthy/customer-verification.md"},
+        {"document_id": "KB-TKT-001", "category": "ticketing", "path": "healthy/ticket-priority.md"},
+        {"document_id": "KB-ESC-001", "category": "escalation", "path": "healthy/escalation-policy.md"},
+        {"document_id": "KB-HRS-001", "category": "support", "path": "healthy/support-hours.md"}
+      ]
+    },
+    "stale": {
+      "effective_date": "2026-08-15",
+      "inherits": "healthy",
+      "overrides": [
+        {"document_id": "KB-RET-001", "category": "returns", "path": "stale/return-policy.md", "status": "stale"}
+      ]
+    }
+  }
+}
